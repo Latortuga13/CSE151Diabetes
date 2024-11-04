@@ -1,0 +1,1 @@
+After analyzing the pairplot we graphed of our data, we plan on preprocessing our data by dropping patient ID, Height, Weight, Smoker and Ecig status, and TetanusLast10Tdap. Patient ID does not relate to our goal for the project. Height and weight are covered by the BMI column. Smoker/Ecig status and TetanusLast10Tdap were determined to be irrelevant as well.
