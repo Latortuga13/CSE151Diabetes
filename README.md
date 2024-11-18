@@ -8,5 +8,4 @@
 
 4. Based on the near-negligible differences between our model performance (or predictive error) on our training data and test data, we concluded that our model is likely underfitted (though we acknowledge the sheer size of our data set makes it hard to know the scale with which our data is underfitted). For our next model, we're considering using a SVM to yield a more complex decision boundary, and put us in the ideal complexity range where our model is both fairly accurate and generalizable.
 
-6. Conclusion section: What is the conclusion of your 1st model? What can be done to possibly improve it?
-Our conclusion of our 1st model is that we're underfitting. To improve this we are considering using SVM for our second model to achieve better complexity (we can control C) and accuracy, since we think our predictive error should still to be too high (based on where we are in the fitting graph). 
+6. Our conclusion of our 1st model is that we're underfitting. To improve this we are considering using SVM for our second model to achieve better complexity (we can control C) and accuracy, since we think our predictive error should still to be too high (based on where we are in the fitting graph). 
