@@ -16,8 +16,6 @@ We will able be processing the HadDiebetes column since it is in string format w
 6. Our conclusion of our 1st model is that we're underfitting. To improve this we are considering using SVM for our second model to achieve better complexity (we can control C) and accuracy, since we think our predictive error should still to be too high (based on where we are in the fitting graph). 
 
 ## Milestone 4:
-The model that was used in this milestone was SVM. We tested this model twice once with the cleaned dataset, and the other with oversampling. When it came to the cleaned dataset, we got a result that was similar amongst all regularization coefficients. This lead us to update our model by using oversampling. After testing the model with various regularization parameters, the results became slightly varied amongst different tests. Ultimately, the best result came from a regulaization parameter of 0.01. 
-
 1. We trained our second model using SVM on our data. We first ran it with the cleaned data from our previous milestone. However this became problematic as the classification report showed that no matter how we changed the regularization coefficient, the results would be similar across all fields (precision, recall, f1, accuracy). Thus we updated our data to use oversampling which yielded different results amongst different regularization coefficients. However the results were very similar to each other with very minor differences.
 
 2. When evaluating our model with different regularization coefficients. We found that the best coefficient was when c=0.01. The accuracy for this test was 0.73690 and for the weighted average of precision, recall, and f1 score we yielded 0.85697, 0.73690, and 0.77304 respectively.
