@@ -21,3 +21,5 @@ We will able be processing the HadDiebetes column since it is in string format w
 2. When evaluating our model with different regularization coefficients. We found that the best coefficient was when c=0.01. The accuracy for this test was 0.73690 and for the weighted average of precision, recall, and f1 score we yielded 0.85697, 0.73690, and 0.77304 respectively.
 
 3. The predictive error between the test and training data were still very close, and thus we yielded that our model is still underfitting. To combat this, we determined that our next model should be a decision tree model as we believe it will help us to determine our data's more important features. We also determined that a decision tree model better suits our dataset due to the large variance of data types in our dataset.
+
+4. After running the SVM with the oversampled data and best performing regularization coefficient, we used SKLearn's confusion matrix in order to get the True Negatives, False Positive, False Negatives, and True Positives. The end results were: True Negatives (TN) = 28996, False Positives (FP) = 10493, False Negatives (FN) = 1635, True Positives (TP) = 4980.
