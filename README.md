@@ -5,7 +5,6 @@ We will able be processing the HadDiebetes column since it is in string format w
 
 
 ## Milestone 3:
-
 1. To finish the **major preprocessing** step, we first dropped the columns we decided to exclude in Milestone 2. We then encoded categorical features such as "RaceEthnicity", "Sex" and "GeneralHealth" and "AgeCategory" using one-hot, ordinal (for GeneralHealth) and parsing to keep just the lower bound of the age group each patient belonged to. We used minmax scaling to scale both Age and BMI. Our reasoning was that doing so would make it easier for us to compare the weights generated from our model for each feature afterwards. We decided not to use feature expansion since most of our data is already binary (and typically of the format "has a condition or doesn't")
 
 2. We trained our first model using a basic LogisticRegressor on our data to predict whether or not a patient had diabetes. We first decided to produce a prediction without removing the rows that had other values for 'HadDiabetes' than yes or no for the purposes of comparison. Then, we removed those rows from our dataframe and ran the regressor again. Later, we also ran our model again with oversampled training data to account for the imbalance between HadDiabetes occurences in our dataset
@@ -15,3 +14,15 @@ We will able be processing the HadDiebetes column since it is in string format w
 4. Based on the near-negligible differences between our model performance (or predictive error) on our training data and test data, we concluded that our model is likely underfitted (though we acknowledge the sheer size of our data set makes it hard to know the scale with which our data is underfitted). For our next model, we're considering using a SVM to yield a more complex decision boundary, and put us in the ideal complexity range where our model is both fairly accurate and generalizable.
 
 6. Our conclusion of our 1st model is that we're underfitting. To improve this we are considering using SVM for our second model to achieve better complexity (we can control C) and accuracy, since we think our predictive error should still to be too high (based on where we are in the fitting graph). 
+
+## Milestone 4:
+1. We trained our second model using SVM on our data. We first ran it with the cleaned data from our previous milestone. However this became problematic as the classification report showed that no matter how we changed the regularization coefficient, the results would be similar across all fields (precision, recall, f1, accuracy). Thus we updated our data to use oversampling which yielded different results amongst different regularization coefficients. However the results were very similar to each other with very minor differences.
+
+2. When evaluating our model with different regularization coefficients. We found that the best coefficient was when c=0.01. The accuracy for this test was 0.73690 and for the weighted average of precision, recall, and f1 score we yielded 0.85697, 0.73690, and 0.77304 respectively.
+
+3. The predictive error between the test and training data were still very close, and thus we yielded that our model is still underfitting. To combat this, we determined that our next model should be a decision tree model as we believe it will help us to determine our data's more important features. We also determined that a decision tree model better suits our dataset due to the large variance of data types in our dataset.
+
+4. After running the SVM with the oversampled data and best performing regularization coefficient, we used SKLearn's confusion matrix in order to get the True Negatives, False Positive, False Negatives, and True Positives. The end results were: True Negatives (TN) = 28996, False Positives (FP) = 10493, False Negatives (FN) = 1635, True Positives (TP) = 4980.
+
+### Conclusion Milestone 4:
+In conclusion, our model performed relatively the same as the first model. After observing our new model, the accuracy, precision, and recall were all similar from the results of our first model. The reason we believe this to be the case is due to the same problem of underfitting amongst both models. In order to improve this we could do more continuous testing on regularization coefficients. However we believe this change would only result in very minor differences from our current results as all of our current tests are still similar to each other. One other imrprovement we could make is to increase dimensionality by using the svc kernel. By doing this it potentially will better adjust the svm boundary to our complex dataset rather than our current linear kernel which may lose emphasis on more important traits.
