@@ -88,6 +88,9 @@ data_clean.head()
 ### Model 1
 For our first model, our group decided to use a logistic regression. we first trained our model, without the values for HadDiabetes, removed any outliers within the
 model, and in order to address the imbalance, we oversampled the underrepresented categories.
+[Model 1 notebook](https://github.com/Latortuga13/CSE151Diabetes/blob/main/Milestone3.ipynb)
+[img1](https://media.discordapp.net/attachments/1294064038321324125/1316261231941914636/ACI4WYq7e1FZAAAAAElFTkSuQmCC.png?ex=675b100c&is=6759be8c&hm=7d7ded30c6e171902abb94dc0eadb9484391cf2d923255324f86a26d2bda606a&=&format=webp&quality=lossless)
+
 
 ### Model 2
 For our second model, we swapped over to using a Support Vector Machine.Here, we used our cleaned data (same as model 1) and varied the values of our one parmeter c. Similarly, we oversampled the underrepresented categories in order to address the imbalance
