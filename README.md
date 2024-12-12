@@ -3,19 +3,15 @@ The modern grocery store is chock full of products that contain unhealthy amount
 
 ## Methods:
 ### Data Exploration
-For our data exploration portion of our project, we first generated a pair plot to visualize the relationship of to help us rule which attributes we plan on dropping
-and which to keep within our dataset. We ended up dropping the following attributes: patient ID, Height, weight, state, Smoker and Ecig status
-and TetanusLast10Tdap. We dropped height and weight to reduce dimensionality since we figured BMI covers both attributes. State and Patient ID are clearly arbitrary, as our predictor is based upon the individuals health status. Initially we dropped Smoker, Ecig status
-and TetanusLast10Tdap because the responses in the dataset were hard to satisfactorily order. For example, the difference between smoking every day and smoking some days is very different from never smoked and former smoker. We would have to use one hot encoding to order them without introducing some arbitrary order and this added dimensionality could worsen the value of the other features on our model. We explored adding an encoding for these fields and this is in the repo as our third model. Additionally, we reviewed "HadDiabetes" target value and came to the conclusion to drop rows containing the options "yes, but only during pregnancy (female)" and "No, pre-diabetes or borderline diabetes". We dropped these two target values because they are edge cases that muddy our training data and may lower our predictors accuracy for chronic diabetes. Finally, we recognize that there are a lot more no's then yes's for HadDiabetes, something we'd have to address in our models.
+For our data exploration portion of our project, we first generated a pair plot to visualize the features' relationships to each other. Looking at the pairplot, we decided to drop the following attributes: patient ID, Height, weight, state, Smoker and Ecig status and TetanusLast10Tdap. Additionally, we decided to drop rows where the value for HadDiabetes indicated non-chronic cases of diabetes: "yes, but only during pregnancy (female)" and "No, pre-diabetes or borderline diabetes." Finally, we identified a potential obstacle for our model in heavy imbalance in the number of negative occurences of HadDiabetes compared to the positive occurences. 
 
 ![img2](https://media.discordapp.net/attachments/1294064038321324125/1316255317440335963/sbPXr0MH755ZcbHjsA9y6bYVz1PhoAAACAm8KYagAAAMAiQjUAAABgEaEaAAAAsIhQDQAAAFhEqAYAAAAsIlQDAAAAFhGqAQAAAIsI1QAAAIBFhGoAAADAIkI1AAAAYBGhGgAAALCIUA0AAABY9P8A5vwsMRVuBQkAAAAASUVORK5CYII.png?ex=675b0a8a&is=6759b90a&hm=718f95407d5e607fe358b5529f30da406c062e4a1d4ff03ecdcd0966cd8659ee&=&format=webp&quality=lossless)
  
 ### Preprocessing
-within the preprocessing steps, we dropped the columns we mentioned in the data exploring and encoded the following categorical variables: Race ethnicity and Sex (One
-hot), GeneralHealth (ordinal), Agecategory (lower value). For scaling, we applied the MinMax scaling to Age and BMI.
+For preprocessing, we dropped the columns we mentioned in the data exploring and encoded the following categorical variables using varying encoding techniques: Race ethnicity and Sex (One hot), GeneralHealth (ordinal), Agecategory (lower value). At this point, we only had two non-binary numerical features, Age and BMI, so we applied Minmax scaling to them.
 
-``` python
-#cleaning our data
+```python
+#Cleaning our data
 data_clean["AgeCategory"] = data["AgeCategory"].str.extract(r"(\d+)")
 data_clean["AgeCategory"] = data_clean["AgeCategory"].astype(int)
 
@@ -59,18 +55,20 @@ data_clean.head()
 Here is the full preprocessing notebook: [Preprocessing notebook](https://github.com/Latortuga13/CSE151Diabetes/blob/main/Milestone3.ipynb](https://github.com/Latortuga13/CSE151Diabetes/blob/main/Milestone2.ipynb))
 
 ### Model 1
-For our first model, our group decided to use a logistic regressor, because our ultimate task is the binary classifcation of whether or not a patient has/had diabetes. We also figured using a logistic regression model would be a good baseline to measure future models with due to its simplicity. We first trained our model using the scaled data and made a model using sklearn's logistic regressor. After running the model once without oversampling, we addressed the imbalance of yes's and no's in our dataset by running the model on oversampled data. The model that didn't oversample predicted no everytime, and even though this was more accurate, we want to prioritize true positives over true negatives for our predictors intended purpose.
+For our first model, our group decided to use a logistic regressor as a benchmark. We trained our model first using non-oversampled scaled data, then ran it on a subset of our train and test data. We then trained our model on the scaled data using oversampling, and ran it again on a subset of our train and test data. 
 
 [Model 1 notebook](https://github.com/Latortuga13/CSE151Diabetes/blob/main/Milestone3.ipynb)
 
-#### Model Summary
-![img1](https://media.discordapp.net/attachments/1294064038321324125/1316261231941914636/ACI4WYq7e1FZAAAAAElFTkSuQmCC.png?ex=675b100c&is=6759be8c&hm=7d7ded30c6e171902abb94dc0eadb9484391cf2d923255324f86a26d2bda606a&=&format=webp&quality=lossless)
-
-
 ### Model 2
-For our second model, we swapped over to using a Support Vector Machine. The main reason we used a support vector machine is because its possible to tweak the complexity of the model using a hyperparameter. Since our first model is underfitted, this would better allow us to reach optimal complexity. Here, we used our cleaned data (same as model 1) and varied the values of our hyperparameter c. Similarly, we oversampled the underrepresented categories in order to address the imbalance.
-
+For our second model, we decided to use a support vector machine. We trained it on oversampled scaled data, then ran it on a subset of our train and test data using differing values of C, and noting their results. 
 [Model 2 notebook](https://github.com/Latortuga13/CSE151Diabetes/blob/main/Milestone4.ipynb)
+
+## Results:
+#### Model 1 Summary
+![Model1Summary](https://media.discordapp.net/attachments/1294064038321324125/1316261231941914636/ACI4WYq7e1FZAAAAAElFTkSuQmCC.png?ex=675b100c&is=6759be8c&hm=7d7ded30c6e171902abb94dc0eadb9484391cf2d923255324f86a26d2bda606a&=&format=webp&quality=lossless)
+
+#### Model 2 Summary
+![Model2Summary](https://cdn.discordapp.com/attachments/1294064038321324125/1316258493560258640/36ePGi3NzcVLNmTf3555967LHHsu15AwDwMDMY74zNAQAAAADgP5jDCAAAAACwiIQRAAAAAGARCSMAAAAAwCISRgAAAACARSSMAAAAAACLSBgBAAAAABaRMAIAAAAALCJhBAAAAABYRMIIAAAAALCIhBEAAAAAYBEJIwAAAADAIhJGAAAAAIBFJIwAAAAAAIvD4lDyqzm8ayAAAAAElFTkSuQmCC.png?ex=675b0d7f&is=6759bbff&hm=837371621f8637786b668c80b503c480e62dca5beaa243d9f788f97275c28cdf&)
 
 ## Discussion:
 
