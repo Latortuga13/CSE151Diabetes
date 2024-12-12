@@ -67,10 +67,11 @@ For our second model, we decided to use a support vector machine. We trained it 
 ## Results:
 #### Model 1 Summary
 ![Model1Summary](https://media.discordapp.net/attachments/1294064038321324125/1316261231941914636/ACI4WYq7e1FZAAAAAElFTkSuQmCC.png?ex=675b100c&is=6759be8c&hm=7d7ded30c6e171902abb94dc0eadb9484391cf2d923255324f86a26d2bda606a&=&format=webp&quality=lossless)
+![Model1Learning](https://github.com/Latortuga13/CSE151Diabetes/blob/Final/CSE151AGraphs/Logistic%20Regression%20Learning%20Curve.png)
 
 #### Model 2 Summary
 ![Model2Summary](https://cdn.discordapp.com/attachments/1294064038321324125/1316258493560258640/36ePGi3NzcVLNmTf3555967LHHsu15AwDwMDMY74zNAQAAAADgP5jDCAAAAACwiIQRAAAAAGARCSMAAAAAwCISRgAAAACARSSMAAAAAACLSBgBAAAAABaRMAIAAAAALCJhBAAAAABYRMIIAAAAALCIhBEAAAAAYBEJIwAAAADAIhJGAAAAAIBFJIwAAAAAAIvD4lDyqzm8ayAAAAAElFTkSuQmCC.png?ex=675b0d7f&is=6759bbff&hm=837371621f8637786b668c80b503c480e62dca5beaa243d9f788f97275c28cdf&)
-![Model2Learning](https://cdn.discordapp.com/attachments/1294064038321324125/1316262810509906016/AG7BJTHNOf6AAAAAElFTkSuQmCC.png?ex=675b1185&is=6759c005&hm=f865f8056b756551828ba965f202ff26f9e1648a77288d0177b9b79923a5dc12&)
+![Model2Learning](https://github.com/Latortuga13/CSE151Diabetes/blob/Final/CSE151AGraphs/LinearSVC%20Learning%20Curve.png)
 
 #### Neural Network Summary
 ![NeuralNetworkSummary](https://cdn.discordapp.com/attachments/1294064038321324125/1316617175880175728/image.png?ex=675bb2cc&is=675a614c&hm=55b0f6fe69e787e0c1d535f97d081b96ef1e173670ca472bf0fd1b4f692a51a1&)
