@@ -73,7 +73,7 @@ For our second model, we decided to use a support vector machine. We trained it 
 
 ## Results:
 #### Neural Network Summary
-![NeuralNetworkSummary](https://cdn.discordapp.com/attachments/1294064038321324125/1316590119477579877/image.png?ex=675b9999&is=675a4819&hm=a40296dc87f85bf066880a73bdaaa006699654b3f73699965bb579a8b1121d79&)
+![NeuralNetworkSummary](https://cdn.discordapp.com/attachments/1294064038321324125/1316617175880175728/image.png?ex=675bb2cc&is=675a614c&hm=55b0f6fe69e787e0c1d535f97d081b96ef1e173670ca472bf0fd1b4f692a51a1&)
 
 ## Discussion:
 
