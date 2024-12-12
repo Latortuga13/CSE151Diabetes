@@ -30,6 +30,28 @@ In conclusion, our model performed relatively the same as the first model. After
 ### Introduction Milestone 5:
 The modern grocery store is chock full of products that contain unhealthy amounts of refined sugars. Even products promoted as healthy alternatives routinely include big servings of sugar that make them addictive must-buys. Even though there is a genetic component to the onset of diabetes, lifestyle choices can greatly impact the possibility of developing especially type 2 diabetes. In light of this, we decided to build models using patient information data to predict whether a patient has or doesn't have diabetes. These models are important because they provide data-driven insights that empower better decision-making. By having a semi accurate predictor, it is possible to diagnose and help people who may suffer from the condition without knowing whether or not they have it. This knowledge from our project can help patients and people throughout the world who may struggle with a lack of knowledge about their own medical conditions.
 
+### Methods Milestone 5:
+##Data Exploration
+For our data exploration portion of our project, we first generated a pair plot to visualize the relationship of to help us rule which attributes we plan on dropping
+and which to keep within our dataset. We ended up dropping the following attributes: patient ID, Height, weight, state, Smoker and Ecig status
+and TetanusLast10Tdap. Additionally, we reviewed "HadDiabetes" target value and came to the conclusion to drop rows containing the options "yes, but only during pregnancy (female)" and "No, pre-diabetes or borderline diabetes"
+
+##Preprocessing
+within the preprocessing steps, we dropped the columns we mentioned in the data exploring and encoded the following categorical variables: Racethnicity and Sex (One
+hot), GeneralHealth (ordinal), Agecategory (lower value). For scaling, we applied the MinMax scaling to Age and BMI and for Target Variable, we one hot encoded it.
+Finally, we do recognize that there is a bit of data imbalance and as such, can be influence our results.
+
+##Model 1
+For our first model, our group decided to use a logistic regression. we first trained our model, without the values for HadDiabetes, removed any outliers within the
+model, and in order to address the imbalance, we oversampled the underrepresented categories.
+
+##Model 2
+For our second model, we swapped over to using a Support Vector Machine.Here, we used our cleaned data (same as model 1) and varied the values of our one parmeter c. Similarly, we oversampled the underrepresented categories in order to address the imbalance
+
+##Model 3
+For our last model, we used a Decision Tree Model. Here, we trained the model using the same oversampled dataset used for the SM model and we experimented with
+different depths and minimum samples to split a node.
+
 ### Discussion Milestone 5:
 
 Our initial data preprocessing strategy was guided by the principle of Occam's razor, which suggests that simpler models are preferable. However, upon reflection, this approach may have been overly simplistic. The dismissal of categorical variables like Smoker/Ecig status might have been premature, which could capture the nuanced relationships within these features.
