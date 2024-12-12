@@ -6,12 +6,13 @@ The modern grocery store is chock full of products that contain unhealthy amount
 For our data exploration portion of our project, we first generated a pair plot to visualize the relationship of to help us rule which attributes we plan on dropping
 and which to keep within our dataset. We ended up dropping the following attributes: patient ID, Height, weight, state, Smoker and Ecig status
 and TetanusLast10Tdap. We dropped height and weight to reduce dimensionality since we figured BMI covers both attributes. State and Patient ID are clearly arbitrary, as our predictor is based upon the individuals health status. Initially we dropped Smoker, Ecig status
-and TetanusLast10Tdap because the responses in the dataset were hard to satisfactorily order. For example, the difference between smoking every day and smoking some days is very different from never smoked and former smoker. We would have to use one hot encoding to order them without introducing some arbitrary order and this added dimensionality could worsen the value of the other features on our model. We explored adding an encoding for these fields and this is in the repo as our third model. Additionally, we reviewed "HadDiabetes" target value and came to the conclusion to drop rows containing the options "yes, but only during pregnancy (female)" and "No, pre-diabetes or borderline diabetes". We dropped these two target values because they are edge cases that muddy our training data and may lower our predictors accuracy for chronic diabetes.
+and TetanusLast10Tdap because the responses in the dataset were hard to satisfactorily order. For example, the difference between smoking every day and smoking some days is very different from never smoked and former smoker. We would have to use one hot encoding to order them without introducing some arbitrary order and this added dimensionality could worsen the value of the other features on our model. We explored adding an encoding for these fields and this is in the repo as our third model. Additionally, we reviewed "HadDiabetes" target value and came to the conclusion to drop rows containing the options "yes, but only during pregnancy (female)" and "No, pre-diabetes or borderline diabetes". We dropped these two target values because they are edge cases that muddy our training data and may lower our predictors accuracy for chronic diabetes. Finally, we do recognize that there is a bit of data imbalance and as such, can be influence our results.
 
+![img2](https://media.discordapp.net/attachments/1294064038321324125/1316255317440335963/sbPXr0MH755ZcbHjsA9y6bYVz1PhoAAACAm8KYagAAAMAiQjUAAABgEaEaAAAAsIhQDQAAAFhEqAYAAAAsIlQDAAAAFhGqAQAAAIsI1QAAAIBFhGoAAADAIkI1AAAAYBGhGgAAALCIUA0AAABY9P8A5vwsMRVuBQkAAAAASUVORK5CYII.png?ex=675b0a8a&is=6759b90a&hm=718f95407d5e607fe358b5529f30da406c062e4a1d4ff03ecdcd0966cd8659ee&=&format=webp&quality=lossless)
+ 
 ### Preprocessing
-within the preprocessing steps, we dropped the columns we mentioned in the data exploring and encoded the following categorical variables: Racethnicity and Sex (One
-hot), GeneralHealth (ordinal), Agecategory (lower value). For scaling, we applied the MinMax scaling to Age and BMI and for Target Variable, we one hot encoded it.
-Finally, we do recognize that there is a bit of data imbalance and as such, can be influence our results.
+within the preprocessing steps, we dropped the columns we mentioned in the data exploring and encoded the following categorical variables: Race ethnicity and Sex (One
+hot), GeneralHealth (ordinal), Agecategory (lower value). For scaling, we applied the MinMax scaling to Age and BMI.
 
 ``` python
 #cleaning our data
@@ -57,11 +58,12 @@ data_clean.head()
 ```
 
 ### Model 1
-For our first model, our group decided to use a logistic regression. we first trained our model, without the values for HadDiabetes, removed any outliers within the
+For our first model, our group decided to use a logistic regressor, because our ultimate task is the binary classifcation of whether or not a patient has/had diabetes. We first trained our model, removed any outliers within the
 model, and in order to address the imbalance, we oversampled the underrepresented categories.
 
 [Model 1 notebook](https://github.com/Latortuga13/CSE151Diabetes/blob/main/Milestone3.ipynb)
 
+#### Model Summary
 ![img1](https://media.discordapp.net/attachments/1294064038321324125/1316261231941914636/ACI4WYq7e1FZAAAAAElFTkSuQmCC.png?ex=675b100c&is=6759be8c&hm=7d7ded30c6e171902abb94dc0eadb9484391cf2d923255324f86a26d2bda606a&=&format=webp&quality=lossless)
 
 
