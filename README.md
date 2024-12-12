@@ -24,35 +24,35 @@ We will able be processing the HadDiebetes column since it is in string format w
 
 4. After running the SVM with the oversampled data and best performing regularization coefficient, we used SKLearn's confusion matrix in order to get the True Negatives, False Positive, False Negatives, and True Positives. The end results were: True Negatives (TN) = 28996, False Positives (FP) = 10493, False Negatives (FN) = 1635, True Positives (TP) = 4980.
 
-### Conclusion Milestone 4:
+## Conclusion Milestone 4:
 In conclusion, our model performed relatively the same as the first model. After observing our new model, the accuracy, precision, and recall were all similar from the results of our first model. The reason we believe this to be the case is due to the same problem of underfitting amongst both models. In order to improve this we could do more continuous testing on regularization coefficients. However we believe this change would only result in very minor differences from our current results as all of our current tests are still similar to each other. One other imrprovement we could make is to increase dimensionality by using the svc kernel. By doing this it potentially will better adjust the svm boundary to our complex dataset rather than our current linear kernel which may lose emphasis on more important traits.
 
-### Introduction Milestone 5:
+## Introduction Milestone 5:
 The modern grocery store is chock full of products that contain unhealthy amounts of refined sugars. Even products promoted as healthy alternatives routinely include big servings of sugar that make them addictive must-buys. Even though there is a genetic component to the onset of diabetes, lifestyle choices can greatly impact the possibility of developing especially type 2 diabetes. In light of this, we decided to build models using patient information data to predict whether a patient has or doesn't have diabetes. These models are important because they provide data-driven insights that empower better decision-making. By having a semi accurate predictor, it is possible to diagnose and help people who may suffer from the condition without knowing whether or not they have it. This knowledge from our project can help patients and people throughout the world who may struggle with a lack of knowledge about their own medical conditions.
 
-### Methods Milestone 5:
-##Data Exploration
+## Methods Milestone 5:
+### Data Exploration
 For our data exploration portion of our project, we first generated a pair plot to visualize the relationship of to help us rule which attributes we plan on dropping
 and which to keep within our dataset. We ended up dropping the following attributes: patient ID, Height, weight, state, Smoker and Ecig status
 and TetanusLast10Tdap. Additionally, we reviewed "HadDiabetes" target value and came to the conclusion to drop rows containing the options "yes, but only during pregnancy (female)" and "No, pre-diabetes or borderline diabetes"
 
-##Preprocessing
+### Preprocessing
 within the preprocessing steps, we dropped the columns we mentioned in the data exploring and encoded the following categorical variables: Racethnicity and Sex (One
 hot), GeneralHealth (ordinal), Agecategory (lower value). For scaling, we applied the MinMax scaling to Age and BMI and for Target Variable, we one hot encoded it.
 Finally, we do recognize that there is a bit of data imbalance and as such, can be influence our results.
 
-##Model 1
+### Model 1
 For our first model, our group decided to use a logistic regression. we first trained our model, without the values for HadDiabetes, removed any outliers within the
 model, and in order to address the imbalance, we oversampled the underrepresented categories.
 
-##Model 2
+### Model 2
 For our second model, we swapped over to using a Support Vector Machine.Here, we used our cleaned data (same as model 1) and varied the values of our one parmeter c. Similarly, we oversampled the underrepresented categories in order to address the imbalance
 
-##Model 3
+### Model 3
 For our last model, we used a Decision Tree Model. Here, we trained the model using the same oversampled dataset used for the SM model and we experimented with
 different depths and minimum samples to split a node.
 
-### Discussion Milestone 5:
+## Discussion Milestone 5:
 
 Our initial data preprocessing strategy was guided by the principle of Occam's razor, which suggests that simpler models are preferable. However, upon reflection, this approach may have been overly simplistic. The dismissal of categorical variables like Smoker/Ecig status might have been premature, which could capture the nuanced relationships within these features.
 
@@ -62,10 +62,10 @@ The class imbalance in our dataset was a significant challenge, and while oversa
 
 In light of the limitations and insights gained from our analysis, we propose several directions for future research. We will explore the use of neural network models, which are capable of capturing complex, non-linear relationships and can handle high-dimensional data more effectively. Additionally, we will investigate more advanced techniques for dealing with class imbalance. By addressing these areas, we aim to not only improve our model's predictive performance but also to gain a deeper understanding of the underlying patterns in the data.
 
-### Conclusion Milestone 5:
+## Conclusion Milestone 5:
 This study investigated the use of data preprocessing, basic logistic regressors, and SVMs for diabetes prediction, utilizing the Data of Patients (For Medical Field) dataset from kaggle. Through our experimentation we realized the limitations of “simple” machine learning models as our logistic regressor and SMVs produced very similar results. We believe that with some modifications to our regularization coefficients in our logistic regressor or an increase in dimensionality in our SVC kernel we could slightly improve our results but our best chances at a better result is though using a more complex machine learning model such as neural networks. With the use of neural networks we could capture more complex relationships between our features which simpler models cannot. Some limiations we faced in our investigation is that our model is extremely skewed with data on negative results for diabetes. If our model was more evenly distributed we would likely have found better results with our SVMs and logistic regressors. We also faced some limitations with the computing power of our devices. We were unable to run our SVMs with higher dimensionality due to a lack of processing power to run the model in a reasonable amount of time. Future work on this investigation could focus on exploring deep learning models to mitigate our issues with the over negative samples in our dataset, aiming to further enhance our accuracy.
 
-### Collaborative Statement Milestone 5:
+## Collaborative Statement Milestone 5:
 We worked well as a group and did most of the project together. We would do a couple of group meetings and one call for each of the models and milestones. The roles of each member and their contributions are listed below.
 Seth Chng: Programmer and writer
 Wrote sections of the final paper and worked on both models. Collaborated to write the abstract for the project and find the dataset. 
