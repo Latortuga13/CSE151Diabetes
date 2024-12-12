@@ -109,7 +109,7 @@ Victor Ku: Programmer and writer
 Wrote sections of the final paper and worked on the second model. Collaborated to write the abstract for the project and find the dataset.
 
 Lixing Shao: Programmer and writer
-Wrote sections of the final paper and worked on the first model. Collaborated to help find the dataset.
+Wrote sections of the final paper and worked on the first and further exploration model. Collaborated to help find the dataset.
 
 # Prior Submissions
 ## Milestone 2:
