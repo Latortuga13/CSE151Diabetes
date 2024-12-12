@@ -28,18 +28,62 @@ We will able be processing the HadDiebetes column since it is in string format w
 In conclusion, our model performed relatively the same as the first model. After observing our new model, the accuracy, precision, and recall were all similar from the results of our first model. The reason we believe this to be the case is due to the same problem of underfitting amongst both models. In order to improve this we could do more continuous testing on regularization coefficients. However we believe this change would only result in very minor differences from our current results as all of our current tests are still similar to each other. One other imrprovement we could make is to increase dimensionality by using the svc kernel. By doing this it potentially will better adjust the svm boundary to our complex dataset rather than our current linear kernel which may lose emphasis on more important traits.
 
 ## Introduction Milestone 5:
-The modern grocery store is chock full of products that contain unhealthy amounts of refined sugars. Even products promoted as healthy alternatives routinely include big servings of sugar that make them addictive must-buys. Even though there is a genetic component to the onset of diabetes, lifestyle choices can greatly impact the possibility of developing especially type 2 diabetes. In light of this, we decided to build models using patient information data to predict whether a patient has or doesn't have diabetes. These models are important because they provide data-driven insights that empower better decision-making. By having a semi accurate predictor, it is possible to diagnose and help people who may suffer from the condition without knowing whether or not they have it. This knowledge from our project can help patients and people throughout the world who may struggle with a lack of knowledge about their own medical conditions.
+The modern grocery store is chock full of products that contain unhealthy amounts of refined sugars. Even products promoted as healthy alternatives routinely include big servings of sugar that make them addictive must-buys. Even though there is a genetic component to the onset of diabetes, health status can greatly impact the possibility of developing especially type 2 diabetes. In light of this, we decided to build models using patient information data to predict whether a patient has or doesn't have diabetes. These models are important because they provide data-driven insights that empower better decision-making. By having a semi accurate predictor, it is possible to diagnose and help people who may suffer from the condition without knowing whether or not they have it. This knowledge from our project can help patients and people throughout the world who may struggle with a lack of knowledge about their own medical conditions.
 
 ## Methods Milestone 5:
 ### Data Exploration
 For our data exploration portion of our project, we first generated a pair plot to visualize the relationship of to help us rule which attributes we plan on dropping
 and which to keep within our dataset. We ended up dropping the following attributes: patient ID, Height, weight, state, Smoker and Ecig status
-and TetanusLast10Tdap. Additionally, we reviewed "HadDiabetes" target value and came to the conclusion to drop rows containing the options "yes, but only during pregnancy (female)" and "No, pre-diabetes or borderline diabetes"
+and TetanusLast10Tdap. We dropped height and weight to reduce dimensionality since we figured BMI covers both attributes. State and Patient ID are clearly arbitrary, as our predictor is based upon the individuals health status. Initially we dropped Smoker, Ecig status
+and TetanusLast10Tdap because the responses in the dataset were hard to satisfactorily order. For example, the difference between smoking every day and smoking some days is very different from never smoked and former smoker. We would have to use one hot encoding to order them without introducing some arbitrary order and this added dimensionality could worsen the value of the other features on our model. We explored adding an encoding for these fields and this is in the repo as our third model. Additionally, we reviewed "HadDiabetes" target value and came to the conclusion to drop rows containing the options "yes, but only during pregnancy (female)" and "No, pre-diabetes or borderline diabetes". We dropped these two target values because they are edge cases that muddy our training data and may lower our predictors accuracy for chronic diabetes.
 
 ### Preprocessing
 within the preprocessing steps, we dropped the columns we mentioned in the data exploring and encoded the following categorical variables: Racethnicity and Sex (One
 hot), GeneralHealth (ordinal), Agecategory (lower value). For scaling, we applied the MinMax scaling to Age and BMI and for Target Variable, we one hot encoded it.
 Finally, we do recognize that there is a bit of data imbalance and as such, can be influence our results.
+
+``` python
+#cleaning our data
+data_clean["AgeCategory"] = data["AgeCategory"].str.extract(r"(\d+)")
+data_clean["AgeCategory"] = data_clean["AgeCategory"].astype(int)
+
+data_clean = pd.get_dummies(data_clean, columns=['RaceEthnicityCategory'])
+
+health_mapping = {
+    "Excellent": 5,
+    "Very good": 4,
+    "Good": 3,
+    "Fair": 2,
+    "Poor": 1
+}
+data_clean["GeneralHealth"] = data_clean["GeneralHealth"].map(health_mapping)
+data_clean["GeneralHealth"] = data_clean["GeneralHealth"].astype(int)
+
+sex_mapping = {
+    "Male": 1,
+    "Female": 0
+}
+
+data_clean["Sex"] = data_clean["Sex"].map(sex_mapping)
+data_clean["Sex"] = data_clean["Sex"].astype(int)
+
+data_clean.head()
+
+#Scaled the data to make it easier to compare the weights generated from our model for each feature afterwards.
+
+from sklearn.preprocessing import MinMaxScaler
+min_max_scaler = MinMaxScaler()
+
+age = pd.DataFrame(data_clean, columns=['AgeCategory'])
+age = min_max_scaler.fit_transform(age)
+data_clean['AgeCategory'] = age
+
+bmi = pd.DataFrame(data_clean, columns=['BMI'])
+bmi = min_max_scaler.fit_transform(bmi)
+data_clean['BMI'] = bmi
+data_clean.head()
+
+```
 
 ### Model 1
 For our first model, our group decided to use a logistic regression. we first trained our model, without the values for HadDiabetes, removed any outliers within the
@@ -47,10 +91,6 @@ model, and in order to address the imbalance, we oversampled the underrepresente
 
 ### Model 2
 For our second model, we swapped over to using a Support Vector Machine.Here, we used our cleaned data (same as model 1) and varied the values of our one parmeter c. Similarly, we oversampled the underrepresented categories in order to address the imbalance
-
-### Model 3
-For our last model, we used a Decision Tree Model. Here, we trained the model using the same oversampled dataset used for the SM model and we experimented with
-different depths and minimum samples to split a node.
 
 ## Discussion Milestone 5:
 
