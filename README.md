@@ -71,6 +71,10 @@ For our second model, we decided to use a support vector machine. We trained it 
 #### Model 2 Summary
 ![Model2Summary](https://cdn.discordapp.com/attachments/1294064038321324125/1316258493560258640/36ePGi3NzcVLNmTf3555967LHHsu15AwDwMDMY74zNAQAAAADgP5jDCAAAAACwiIQRAAAAAGARCSMAAAAAwCISRgAAAACARSSMAAAAAACLSBgBAAAAABaRMAIAAAAALCJhBAAAAABYRMIIAAAAALCIhBEAAAAAYBEJIwAAAADAIhJGAAAAAIBFJIwAAAAAAIvD4lDyqzm8ayAAAAAElFTkSuQmCC.png?ex=675b0d7f&is=6759bbff&hm=837371621f8637786b668c80b503c480e62dca5beaa243d9f788f97275c28cdf&)
 
+## Results:
+#### Neural Network Summary
+![NeuralNetworkSummary](https://cdn.discordapp.com/attachments/1294064038321324125/1316590119477579877/image.png?ex=675b9999&is=675a4819&hm=a40296dc87f85bf066880a73bdaaa006699654b3f73699965bb579a8b1121d79&)
+
 ## Discussion:
 
 For our data preprocessing step, we first decided to eliminate some features to reduce dimensionality. The fields we eventually decided to drop were patient ID, Height, weight, state, Smoker and Ecig status and TetanusLast10Tdap. For patient ID and state, we figured that both were arbitrary features with respect to a patient's health status, and would harm the model more with their inclusion than without. For height and weight, we figured that BMI could be a good enough metric of health in regard to obesity, and so decided to drop both. As for Smoker and Ecig status and TetanusLast10Tdap, we initially dropped them in our models (exempting our further exploration-- neural network model, which will be covered in the Discussion step) because the values for these fields were difficult to satisfactorily order. For example, that the difference between smoking every day and smoking some days is very different from never having smoked and being a former smoker. This ruled out ordinal encoding, binary encoding still has some of the same issues, and a one-hot encoding would introduce dimensionality. With these considerations in mind, we dropped them for Model 1 and Model 2. 
