@@ -89,7 +89,7 @@ data_clean.head()
 For our first model, our group decided to use a logistic regression. we first trained our model, without the values for HadDiabetes, removed any outliers within the
 model, and in order to address the imbalance, we oversampled the underrepresented categories.
 [Model 1 notebook](https://github.com/Latortuga13/CSE151Diabetes/blob/main/Milestone3.ipynb)
-[img1](https://media.discordapp.net/attachments/1294064038321324125/1316261231941914636/ACI4WYq7e1FZAAAAAElFTkSuQmCC.png?ex=675b100c&is=6759be8c&hm=7d7ded30c6e171902abb94dc0eadb9484391cf2d923255324f86a26d2bda606a&=&format=webp&quality=lossless)
+![img1](https://media.discordapp.net/attachments/1294064038321324125/1316261231941914636/ACI4WYq7e1FZAAAAAElFTkSuQmCC.png?ex=675b100c&is=6759be8c&hm=7d7ded30c6e171902abb94dc0eadb9484391cf2d923255324f86a26d2bda606a&=&format=webp&quality=lossless)
 
 
 ### Model 2
