@@ -13,7 +13,6 @@ and TetanusLast10Tdap because the responses in the dataset were hard to satisfac
 ### Preprocessing
 within the preprocessing steps, we dropped the columns we mentioned in the data exploring and encoded the following categorical variables: Race ethnicity and Sex (One
 hot), GeneralHealth (ordinal), Agecategory (lower value). For scaling, we applied the MinMax scaling to Age and BMI.
-[Preprocessing notebook](https://github.com/Latortuga13/CSE151Diabetes/blob/main/Milestone3.ipynb](https://github.com/Latortuga13/CSE151Diabetes/blob/main/Milestone2.ipynb))
 
 ``` python
 #cleaning our data
@@ -57,10 +56,10 @@ data_clean['BMI'] = bmi
 data_clean.head()
 
 ```
+Here is the full preprocessing notebook: [Preprocessing notebook](https://github.com/Latortuga13/CSE151Diabetes/blob/main/Milestone3.ipynb](https://github.com/Latortuga13/CSE151Diabetes/blob/main/Milestone2.ipynb))
 
 ### Model 1
-For our first model, our group decided to use a logistic regressor, because our ultimate task is the binary classifcation of whether or not a patient has/had diabetes. We first trained our model, removed any outliers within the
-model, and in order to address the imbalance, we oversampled the underrepresented categories.
+For our first model, our group decided to use a logistic regressor, because our ultimate task is the binary classifcation of whether or not a patient has/had diabetes. We also figured using a logistic regression model would be a good baseline to measure future models with due to its simplicity. We first trained our model using the scaled data and made a model using sklearn's logistic regressor. After running the model once without oversampling, we addressed the imbalance of yes's and no's in our dataset by running the model on oversampled data. The model that didn't oversample predicted no everytime, and even though this was more accurate, we want to prioritize true positives over true negatives for our predictors intended purpose.
 
 [Model 1 notebook](https://github.com/Latortuga13/CSE151Diabetes/blob/main/Milestone3.ipynb)
 
@@ -69,7 +68,7 @@ model, and in order to address the imbalance, we oversampled the underrepresente
 
 
 ### Model 2
-For our second model, we swapped over to using a Support Vector Machine.Here, we used our cleaned data (same as model 1) and varied the values of our one parmeter c. Similarly, we oversampled the underrepresented categories in order to address the imbalance
+For our second model, we swapped over to using a Support Vector Machine. The main reason we used a support vector machine is because its possible to tweak the complexity of the model using a hyperparameter. Since our first model is underfitted, this would better allow us to reach optimal complexity. Here, we used our cleaned data (same as model 1) and varied the values of our hyperparameter c. Similarly, we oversampled the underrepresented categories in order to address the imbalance.
 
 [Model 2 notebook](https://github.com/Latortuga13/CSE151Diabetes/blob/main/Milestone4.ipynb)
 
