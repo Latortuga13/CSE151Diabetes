@@ -13,6 +13,7 @@ and TetanusLast10Tdap because the responses in the dataset were hard to satisfac
 ### Preprocessing
 within the preprocessing steps, we dropped the columns we mentioned in the data exploring and encoded the following categorical variables: Race ethnicity and Sex (One
 hot), GeneralHealth (ordinal), Agecategory (lower value). For scaling, we applied the MinMax scaling to Age and BMI.
+[Preprocessing notebook](https://github.com/Latortuga13/CSE151Diabetes/blob/main/Milestone3.ipynb](https://github.com/Latortuga13/CSE151Diabetes/blob/main/Milestone2.ipynb))
 
 ``` python
 #cleaning our data
